@@ -18,7 +18,7 @@ const router = express()
  *                  title:
  *                      type: string
  *                  amount:
- *                      type: string
+ *                      type: number
  *                  date:
  *                      type: string
  *                  category:
