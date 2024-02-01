@@ -29,7 +29,7 @@ const swaggerDefinition = {
     info:{
         title:"Expense Tracker",
         version:"1.0.0",
-        description:"API FOR EXPENSE TRACKER"
+        description:"API FOR PERSONAL FINANCE MANAGEMENT"
     },
 servers: [
     {
@@ -53,7 +53,7 @@ app.use('/api-docs',swaggerui.serve,swaggerui.setup(swaggerspecs,{
     swaggerOptions: {
         docExpansion: "none",
     },
-    customSiteTitle: "JobPortal API"
+    customSiteTitle: "Personal Finance Management API"
 }));
 
 // Defining Routes
