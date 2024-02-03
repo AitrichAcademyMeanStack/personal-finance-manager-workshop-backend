@@ -1,3 +1,4 @@
+import logger from "../Middleware/logger.js"
 import Expense from "../Models/ExpenseModel.js"
 
 // Adding Expenses
@@ -5,6 +6,7 @@ const addExpenses = async (data) => {
     try {
         const expense = await Expense.create(data)
         if (expense) {
+            logger.info("Expense Added", expense)
             return expense
         }
     } catch (error) {

@@ -1,5 +1,6 @@
 import express from 'express';  // Importing Express.js
 import dotenv from 'dotenv';   // Importing Dotenv
+import cors from 'cors'; // Importing Cors
 import connectDb from './Config/db.js'; // Importing Database Connection
 import logger from './Middleware/logger.js'; // Importing logger
 import NotFoundError from './Exceptions/NotFoundError.js'; // Importing NotFoundError
@@ -22,6 +23,7 @@ const app = express()
 
 // Defining Middleware
 app.use(express.json())
+app.use(cors())
 
 // Setup swagger
 const swaggerDefinition = {
