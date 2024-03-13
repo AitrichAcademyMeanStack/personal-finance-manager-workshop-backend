@@ -1,9 +1,11 @@
 import logger from "../Middleware/logger.js"
 import Expense from "../Models/ExpenseModel.js"
+import moment from "moment";
 
 // Adding Expenses
 const addExpenses = async (data) => {
     try {
+        data.date = new Date(data.date).toISOString().split('T')[0];
         const expense = await Expense.create(data)
         if (expense) {
             logger.info("Expense Added", expense)
