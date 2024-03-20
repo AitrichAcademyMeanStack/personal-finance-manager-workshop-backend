@@ -62,18 +62,14 @@ router.get('/', incomeController.fecthIncome)
  *              content:
  *                  application/json:
  *                          schema:
- *                              $ref:   '#/components/schemas/Income'
+ *                              $ref:'#/components/schemas/Income'
  *          responses:
  *              201:
  *                  description: Income Added Successfully
  *                  content:
  *                          application/json:
- * 
- * 
- * 
- * 
  *                                  schema:
- *                                      $ref:   '#/components/schemas/Income'
+ *                                      $ref:'#/components/schemas/Income'
  *              400:
  *                  description: Bad request, check request body
  *                                  

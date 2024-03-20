@@ -2,7 +2,6 @@ import express from 'express';  // Importing Express.js
 import dotenv from 'dotenv';   // Importing Dotenv
 import cors from 'cors'; // Importing Cors
 import connectDb from './Config/db.js'; // Importing Database Connection
-import logger from './Middleware/logger.js'; // Importing logger
 import NotFoundError from './Exceptions/NotFoundError.js'; // Importing NotFoundError
 import { ErrorHandler } from './Utils/errorHandler.js'; // Importing Global Error Handler
 import expenseRouter from "../src/Expense/Router.js" // Importing routes of Expense
@@ -11,7 +10,10 @@ import swaggerjsdoc from 'swagger-jsdoc' // importing swagger-jsdoc
 import swaggerui from 'swagger-ui-express' // imorting swagger-ui-express
 import path , { dirname }  from 'path'; // importing path , dirname API'S from path module
 import { fileURLToPath } from 'url'; // importing url module
+import logger from './middleware/logger.js';
 const __dirname = dirname(fileURLToPath(import.meta.url)); // Configuring dirname path
+import userRouter from "./User/Router.js"
+
 
 
 // configuring .env file
@@ -35,7 +37,7 @@ const swaggerDefinition = {
     },
 servers: [
     {
-        url: "http://localhost:3000"
+        url: "http://localhost:8080"
     },
 ],
 
@@ -47,6 +49,7 @@ const options = {
     apis: [
         path.join(__dirname,"Expense" , "Router.js"),
         path.join(__dirname,"Income","Router.js"),
+        path.join(__dirname,"User","Router.js")
     ],
 };
 
@@ -61,6 +64,8 @@ app.use('/api-docs',swaggerui.serve,swaggerui.setup(swaggerspecs,{
 // Defining Routes
 app.use("/api/v1/expense",expenseRouter);
 app.use("/api/v1/income",incomeRouter);
+app.use("/api/v1/user",userRouter);
+
 
 
 // Handling unmatched URL'S

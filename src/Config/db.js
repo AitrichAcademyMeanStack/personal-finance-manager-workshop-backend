@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import logger from "../Middleware/logger.js";
+import logger from "../middleware/logger.js";
 
 // Connecting Database through Mongoose
 const connectDb = async () => {
