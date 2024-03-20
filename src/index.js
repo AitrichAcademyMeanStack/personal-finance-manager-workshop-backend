@@ -62,10 +62,12 @@ app.use('/api-docs',swaggerui.serve,swaggerui.setup(swaggerspecs,{
 }));
 
 // Defining Routes
+// app.use("/api/v1/user/:userId/expense",expenseRouter);
+
 app.use("/api/v1/expense",expenseRouter);
 app.use("/api/v1/income",incomeRouter);
 app.use("/api/v1/user",userRouter);
-
+ 
 
 
 // Handling unmatched URL'S
@@ -88,6 +90,7 @@ connectDb()
     logger.error("MongoDB Connection failed",err)
 
 })
+
 
 
 

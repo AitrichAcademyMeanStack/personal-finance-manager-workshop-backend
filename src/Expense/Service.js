@@ -1,78 +1,46 @@
-// import logger from "../Middleware/logger.js"
-// import Expense from "../Models/ExpenseModel.js"
-// // import moment from "moment";
 
-// // Adding Expenses
-// const addExpenses = async (data) => {
-//     try {
-//         data.date = new Date(data.date).toISOString().split('T')[0];
-//         const expense = await Expense.create(data)
-//         if (expense) {
-//             logger.info("Expense Added", expense)
-//             return expense
-//         }
-//     } catch (error) {
-//         throw error
-//     }
-// }
-
-// // Fetching Expense
-// const getExpenses = async() => {
-//     try {
-//         const expenses = await Expense.find().sort({created: -1})
-//         if (expenses) {
-//             return expenses
-//         }
-    
-//     } catch (error) {
-//         throw error
-//     }
-// }
-
-// // Deleting Expense
-// const removeExpense = async(expenseId) => {
-//     try {
-//         const data = await Expense.findByIdAndDelete(expenseId)
-//         if (data) {
-//             return data
-//         }
-//     } catch (error) {
-//         throw error
-//     }
-// }
-
-// export default  {addExpenses , getExpenses ,removeExpense}
-
-
-import logger from "../Middleware/logger.js"
 import Expense from "../Models/ExpenseModel.js"
+import User from "../Models/UserModel.js";
 // import moment from "moment";
 
 // Add Expense
 const addExpense = async (userId, expenseData) => {
     try {
-        expenseData.userId = userId; // Associate expense with the user
-        const expense = await Expense.create(expenseData);
-        return expense;
+        const finduser = await User.findById(userId)
+        if (finduser) {
+            expenseData.user = {
+                userId: finduser._id,
+                lastName: finduser.lastname,
+                password: finduser.password,
+                userName: finduser.username,
+                firstName: finduser.firstname,
+                phone: finduser.phone,
+                email:finduser.email
+            }
+            const postexpense = await Expense.create(expenseData)
+            if (postexpense) {
+                return postexpense
+            }
+        }
     } catch (error) {
+        console.log(error);
         throw error;
     }
 };
 
 
 
-// Fetching Expense
-const getExpenses = async() => {
+
+
+const getExpenses = async () => {
     try {
-        const expenses = await Expense.find().sort({created: -1})
-        if (expenses) {
-            return expenses
-        }
-    
+        const expenses = await Expense.find().sort({ created: -1 }).populate('user');
+        return expenses;
     } catch (error) {
-        throw error
+        throw error;
     }
-}
+};
+
 
 // Deleting Expense
 const removeExpense = async(expenseId) => {
@@ -86,4 +54,4 @@ const removeExpense = async(expenseId) => {
     }
 }
 
-export default  {addExpenses , getExpenses ,removeExpense}
+export default  {addExpense , getExpenses ,removeExpense}

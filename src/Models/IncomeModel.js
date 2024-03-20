@@ -1,7 +1,16 @@
 import mongoose from "mongoose"; // Importing Mongoose
 
 const incomeSchema = new mongoose.Schema(
-    {
+    {    user:{
+        userId: mongoose.Schema.Types.ObjectId,
+        firstName: String,
+        lastName: String,
+        email: String,
+        phone: Number,
+        userName: String,
+        password:String,  
+       },
+       
         title: {
             type: String,
             required: true,

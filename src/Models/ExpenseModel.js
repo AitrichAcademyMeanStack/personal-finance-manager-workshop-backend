@@ -1,7 +1,16 @@
 import mongoose from "mongoose"; // Importing Mongoose
 
 const expenseSchema = new mongoose.Schema(
-    {
+    {   
+         user:{
+                userId: mongoose.Schema.Types.ObjectId,
+                firstName: String,
+                lastName: String,
+                email: String,
+                phone: Number,
+                userName: String,
+                password:String,  
+        },
         title: {
             type: String,
             required: true,
@@ -34,7 +43,8 @@ const expenseSchema = new mongoose.Schema(
             required: true,
             maxLength: 20,
             trim: true
-        }
+        },
+       
 
     },
     {versionKey: false}
