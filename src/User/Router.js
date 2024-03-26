@@ -2,21 +2,13 @@ import express from "express";
 import userController from "./Controller.js"
 
 const router = express()
-/**
- * @swagger
+
  /**
  * @swagger
  *  components:
  *      schemas:
  *          User:
  *              type: object
- *              required:
- *                  - firstname
- *                  - lastname
- *                  - email
- *                  - phone
- *                  - username
- *                  - password
  *              properties :
  *                  firstname:
  *                      type: string
@@ -132,37 +124,37 @@ router.delete('/:userId',userController.deleteUser)
  */
 router.get('/:userId',userController.getUserById);
 
-// //update user
-// /**
-// @swagger
-//  *  /api/v1/user/{userId}:
-//  *      put:
-//  *          summary: Update user By ID
-//  *          tags:
-//  *              - User
-//  *          parameters:
-//  *              - in: path
-//  *                name: userId
-//  *                required: true
-//  *                schema:
-//  *                  type: string
-//  *                description: ID of the user
-//  *          requestBody:
-//  *              required: true
-//  *              content:
-//  *                  application/json:
-//  *                      schema:
-//  *                          $ref: '#/components/schemas/User'
-//  *          responses:
-//  *              200:
-//  *                  description: User updated successfully
-//  *                  content:
-//  *                      application/json:
-//  *                          schema:
-//  *                              $ref: '#/components/schemas/User'
-//  *              404:
-//  *                  description: User not found
-//  */
+ //update user
+/**
+ * @swagger
+ *  /api/v1/user/{userId}:
+ *      put:
+ *          summary: Update user By ID
+ *          tags:
+ *              - User
+ *          parameters:
+ *              - in: path
+ *                name: userId
+ *                required: true
+ *                schema:
+ *                  type: string
+ *                description: ID of the user
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/User'
+ *          responses:
+ *              200:
+ *                  description: User updated successfully
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/User'
+ *              404:
+ *                  description: User not found
+ */
 router.put('/:userId',userController.updateUser);
 
 /**

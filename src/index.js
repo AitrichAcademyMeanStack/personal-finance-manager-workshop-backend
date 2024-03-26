@@ -49,7 +49,9 @@ const options = {
     apis: [
         path.join(__dirname,"Expense" , "Router.js"),
         path.join(__dirname,"Income","Router.js"),
-        path.join(__dirname,"User","Router.js")
+        path.join(__dirname,"User","Router.js"),
+        path.join(__dirname,"Account","Router.js")
+
     ],
 };
 
